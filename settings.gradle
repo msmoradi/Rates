@@ -18,6 +18,7 @@ include(":app")
 include(":core:network")
 include(":core:designsystem")
 include(":core:model")
+include(":core:data")
 include(":core:common")
 
 include(":feature:home")
