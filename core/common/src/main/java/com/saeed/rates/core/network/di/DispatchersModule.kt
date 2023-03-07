@@ -1,6 +1,7 @@
 package com.saeed.rates.core.network.di
 
 import com.saeed.rates.core.network.Dispatcher
+import com.saeed.rates.core.network.RatesDispatchers
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,6 +14,6 @@ import kotlinx.coroutines.Dispatchers
 object DispatchersModule {
 
     @Provides
-    @Dispatcher(IO)
+    @Dispatcher(RatesDispatchers.IO)
     fun providesIODispatcher(): CoroutineDispatcher = Dispatchers.IO
 }

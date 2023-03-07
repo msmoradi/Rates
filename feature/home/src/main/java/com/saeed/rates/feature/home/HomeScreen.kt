@@ -1,21 +1,29 @@
 package com.saeed.rates.feature.home
 
 import androidx.annotation.VisibleForTesting
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.saeed.rates.core.designsystem.DevicePreviews
 import com.saeed.rates.core.designsystem.theme.RatesTheme
 import com.saeed.rates.core.model.previewRates
 import com.saeed.rates.feature.home.composables.HomeContent
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun HomeRoute(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
+
+    val homeUiState by viewModel.homeUiState.collectAsStateWithLifecycle()
+
     HomeScreen(
-        homeUiState = HomeUiState.Success,
+        homeUiState = homeUiState,
         modifier = modifier
     )
 }
@@ -28,11 +36,15 @@ internal fun HomeScreen(
 ) {
 
     when (homeUiState) {
-        HomeUiState.Error -> {}
-        HomeUiState.Loading -> {}
+        HomeUiState.Error -> {
+            Text(text = "error")
+        }
+        HomeUiState.Loading -> {
+            Text(text = "loading")
+        }
         is HomeUiState.Success -> {
             HomeContent(
-                rates = previewRates,
+                rates = homeUiState.rates,
                 modifier = modifier
             )
         }
@@ -44,7 +56,7 @@ internal fun HomeScreen(
 fun HomeScreenPreview() {
     RatesTheme {
         HomeScreen(
-            homeUiState = HomeUiState.Success
+            homeUiState = HomeUiState.Success(previewRates)
         )
     }
 }
