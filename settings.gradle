@@ -15,6 +15,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "rates"
 include(":app")
+include(":core:network")
 include(":core:designsystem")
 include(":core:model")
 include(":core:common")
