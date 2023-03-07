@@ -9,6 +9,6 @@ class GetRateListUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(): List<RateModel> {
-        return ratesRepository.getRateList().shuffled()
+        return ratesRepository.getRateList()
     }
 }
