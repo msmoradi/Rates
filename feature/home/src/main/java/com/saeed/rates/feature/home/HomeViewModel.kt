@@ -23,26 +23,29 @@ class HomeViewModel @Inject constructor(
 
     private var needPolling = true
 
-    val homeUiState: StateFlow<HomeUiState> =
-        channelFlow {
-            while (needPolling) {
-                send(getRateListUseCase())
-                delay(POLL_RATES_PERIOD_MILLIS)
+    val homeUiState: StateFlow<HomeUiState> = channelFlow {
+        while (!isClosedForSend) {
+            if (needPolling.not()) {
+                close()
+                return@channelFlow
+            }
+            send(getRateListUseCase())
+            delay(POLL_RATES_PERIOD_MILLIS)
+        }
+    }
+        .asResult()
+        .map { rateListResult ->
+            when (rateListResult) {
+                is Result.Error -> HomeUiState.Error
+                Result.Loading -> HomeUiState.Loading
+                is Result.Success -> HomeUiState.Success(rateListResult.data)
             }
         }
-            .asResult()
-            .map { rateListResult ->
-                when (rateListResult) {
-                    is Result.Error -> HomeUiState.Error
-                    Result.Loading -> HomeUiState.Loading
-                    is Result.Success -> HomeUiState.Success(rateListResult.data)
-                }
-            }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5_00),
-                initialValue = HomeUiState.Loading,
-            )
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_00),
+            initialValue = HomeUiState.Loading,
+        )
 
     override fun onCleared() {
         super.onCleared()
