@@ -47,7 +47,7 @@ fun RateRow(
             color = MaterialTheme.colorScheme.onBackground,
         )
         Text(
-            text = rateModel.amount,
+            text = rateModel.amount.toString(),
             style = MaterialTheme.typography.labelMedium,
             color = Green,
         )
