@@ -19,8 +19,8 @@ val LightDefaultColorScheme = lightColorScheme(
     onPrimary = Color.White,
     error = Red,
     onError = Color.White,
-    surface = Color.White,
-    onSurface = Color.Black,
+    surface = Gray,
+    onSurface = Black,
     background = Color.White,
     onBackground = Black
 )
@@ -34,8 +34,8 @@ val DarkDefaultColorScheme = darkColorScheme(
     onPrimary = Color.White,
     error = Red,
     onError = Color.White,
-    surface = Color.White,
-    onSurface = Color.Black,
+    surface = Gray,
+    onSurface = Black,
     background = Color.White,
     onBackground = Black
 )
