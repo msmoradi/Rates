@@ -9,18 +9,7 @@ data class RateModel(
 
 enum class AmountStatus {
     POSITIVE,
-    NEGATIVE;
-
-    companion object {
-
-        fun map(int: Int): AmountStatus {
-            return when (int) {
-                0 -> POSITIVE
-                1 -> NEGATIVE
-                else -> POSITIVE
-            }
-        }
-    }
+    NEGATIVE
 }
 
 val previewRates = listOf(

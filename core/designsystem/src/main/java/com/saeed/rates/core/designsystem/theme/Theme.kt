@@ -20,6 +20,7 @@ val LightDefaultColorScheme = lightColorScheme(
     secondary = Gray2,
     error = Red,
     onError = Color.White,
+    tertiary = Green,
     surface = Gray,
     onSurface = Black,
     background = Color.White,
