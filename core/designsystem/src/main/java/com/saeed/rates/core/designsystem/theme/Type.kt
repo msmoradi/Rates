@@ -9,89 +9,50 @@ import androidx.compose.ui.unit.sp
 /**
  * Rates typography.
  */
-internal val RatesTypography = Typography(
+internal val RatesTypography = Typography().copy(
     displayLarge = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 57.sp,
-        lineHeight = 64.sp,
-        letterSpacing = (-0.25).sp
+        fontFamily = Satoshi
     ),
     displayMedium = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 45.sp,
-        lineHeight = 52.sp
+        fontFamily = Satoshi
     ),
     displaySmall = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 36.sp,
-        lineHeight = 44.sp
+        fontFamily = Satoshi
     ),
     headlineLarge = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 32.sp,
-        lineHeight = 40.sp
+        fontFamily = Satoshi
     ),
     headlineMedium = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 28.sp,
-        lineHeight = 36.sp
+        fontFamily = Satoshi
     ),
     headlineSmall = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 24.sp,
-        lineHeight = 32.sp
+        fontFamily = Satoshi
     ),
     titleLarge = TextStyle(
-        fontWeight = FontWeight.W700,
-        fontSize = 22.sp,
-        lineHeight = 28.sp
+        fontFamily = Satoshi
     ),
     titleMedium = TextStyle(
-        fontWeight = FontWeight.W700,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.1.sp
+        fontFamily = Satoshi
     ),
     titleSmall = TextStyle(
-        fontWeight = FontWeight.W500,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.1.sp
+        fontFamily = Satoshi
     ),
     bodyLarge = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+        fontFamily = Satoshi
     ),
     bodyMedium = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.25.sp
+        fontFamily = Satoshi
     ),
     bodySmall = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 12.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.4.sp
+        fontFamily = Satoshi
     ),
     labelLarge = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.1.sp
+        fontFamily = Satoshi
     ),
     labelMedium = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 12.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
+        fontFamily = Satoshi
     ),
     labelSmall = TextStyle(
-        fontFamily = FontFamily.Monospace,
-        fontWeight = FontWeight.W500,
-        fontSize = 10.sp,
-        lineHeight = 16.sp
+        fontFamily = Satoshi
     )
 )
