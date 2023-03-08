@@ -16,7 +16,9 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
+const val DEFAULT_ERROR_MESSAGE = "Unknown error"
 private const val POLL_RATES_PERIOD_MILLIS = 120_000L
+val DEFAULT_EXCEPTION = Throwable(DEFAULT_ERROR_MESSAGE)
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -38,7 +40,9 @@ class HomeViewModel @Inject constructor(
         .asResult()
         .map { rateListResult ->
             when (rateListResult) {
-                is Result.Error -> HomeUiState.Error
+                is Result.Error -> HomeUiState.Error(
+                    rateListResult.exception ?: DEFAULT_EXCEPTION
+                )
                 Result.Loading -> HomeUiState.Loading
                 is Result.Success -> HomeUiState.Success(
                     HomeUiModel(
