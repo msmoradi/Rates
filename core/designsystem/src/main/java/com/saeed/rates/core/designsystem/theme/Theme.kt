@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 val LightDefaultColorScheme = lightColorScheme(
     primary = Blue,
     onPrimary = Color.White,
+    secondary = Gray2,
     error = Red,
     onError = Color.White,
     surface = Gray,
@@ -61,7 +62,6 @@ fun RatesTheme(
     ) {
         MaterialTheme(
             colorScheme = colorScheme,
-            typography = RatesTypography,
             content = content
         )
     }

@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.saeed.rates.core.domain.GetRateListUseCase
 import com.saeed.rates.core.result.Result
 import com.saeed.rates.core.result.asResult
+import com.saeed.rates.feature.home.utils.getCurrentDateTime
+import com.saeed.rates.feature.home.utils.toDateString
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
@@ -38,7 +40,12 @@ class HomeViewModel @Inject constructor(
             when (rateListResult) {
                 is Result.Error -> HomeUiState.Error
                 Result.Loading -> HomeUiState.Loading
-                is Result.Success -> HomeUiState.Success(rateListResult.data)
+                is Result.Success -> HomeUiState.Success(
+                    HomeUiModel(
+                        rateListResult.data,
+                        lastTimeUpdate = getCurrentDateTime().toDateString()
+                    )
+                )
             }
         }
         .stateIn(

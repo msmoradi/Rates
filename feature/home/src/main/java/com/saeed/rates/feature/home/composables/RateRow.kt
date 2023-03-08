@@ -43,12 +43,12 @@ fun RateRow(
         Text(
             modifier = Modifier.weight(1f),
             text = rateModel.title,
-            style = MaterialTheme.typography.labelMedium,
+            style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onBackground,
         )
         Text(
-            text = rateModel.amount.toString(),
-            style = MaterialTheme.typography.labelMedium,
+            text = rateModel.amount,
+            style = MaterialTheme.typography.titleMedium,
             color = Green,
         )
     }

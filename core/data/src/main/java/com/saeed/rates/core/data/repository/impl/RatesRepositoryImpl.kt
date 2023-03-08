@@ -5,6 +5,7 @@ import com.saeed.rates.core.model.AmountStatus
 import com.saeed.rates.core.model.RateModel
 import com.saeed.rates.core.network.RatesRemoteDataSource
 import com.saeed.rates.core.network.model.RateDto
+import java.text.DecimalFormat
 import javax.inject.Inject
 
 class RatesRepositoryImpl @Inject constructor(
@@ -17,7 +18,7 @@ class RatesRepositoryImpl @Inject constructor(
         return datasource.getRateList().map {
             RateModel(
                 title = it.symbol,
-                amount = it.price,
+                amount = DecimalFormat("#.####").format(it.price),
                 amountState = getAmountState(it),
                 imageUrl = it.symbol
             )
@@ -31,7 +32,7 @@ class RatesRepositoryImpl @Inject constructor(
         return lastFetchedItems.firstOrNull {
             it.title == newRate.symbol
         }?.run {
-            if (newRate.price >= amount) {
+            if (newRate.price >= amount.toDouble()) {
                 AmountStatus.POSITIVE
             } else {
                 AmountStatus.NEGATIVE

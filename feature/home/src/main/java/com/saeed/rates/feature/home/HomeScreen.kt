@@ -1,6 +1,9 @@
 package com.saeed.rates.feature.home
 
 import androidx.annotation.VisibleForTesting
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -33,8 +36,8 @@ fun HomeRoute(
 @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
 @Composable
 internal fun HomeScreen(
+    modifier: Modifier = Modifier,
     homeUiState: HomeUiState,
-    modifier: Modifier = Modifier
 ) {
 
     when (homeUiState) {
@@ -46,8 +49,8 @@ internal fun HomeScreen(
         }
         is HomeUiState.Success -> {
             HomeContent(
-                rates = homeUiState.rates,
-                modifier = modifier
+                modifier = modifier,
+                homeUiModel = homeUiState.homeUiModel
             )
         }
     }
@@ -58,7 +61,9 @@ internal fun HomeScreen(
 fun HomeScreenPreview() {
     RatesTheme {
         HomeScreen(
-            homeUiState = HomeUiState.Success(previewRates)
+            homeUiState = HomeUiState.Success(
+                HomeUiModel(previewRates, "30/03/2023 - 16:00")
+            )
         )
     }
 }

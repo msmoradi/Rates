@@ -2,7 +2,7 @@ package com.saeed.rates.core.model
 
 data class RateModel(
     val title: String,
-    val amount: Double,
+    val amount: String,
     val amountState: AmountStatus,
     val imageUrl: String
 )
@@ -26,37 +26,37 @@ enum class AmountStatus {
 val previewRates = listOf(
     RateModel(
         title = "GBP/JPY",
-        amount = 0.7815,
+        amount = "0.7815",
         amountState = AmountStatus.NEGATIVE,
         imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1280px-Apple_logo_black.svg.png"
     ),
     RateModel(
         title = "AUD/CAD",
-        amount = 1.3910,
+        amount = "1.3910",
         amountState = AmountStatus.POSITIVE,
         imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1280px-Apple_logo_black.svg.png"
     ),
     RateModel(
         title = "JPY/AED",
-        amount = 0.8682,
+        amount = "0.8682",
         amountState = AmountStatus.POSITIVE,
         imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1280px-Apple_logo_black.svg.png"
     ),
     RateModel(
         title = "EUR/USD",
-        amount = 0.1634,
+        amount = "0.1634",
         amountState = AmountStatus.POSITIVE,
         imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1280px-Apple_logo_black.svg.png"
     ),
     RateModel(
         title = "JPY/SEK",
-        amount = 0.7930,
+        amount = "0.7930",
         amountState = AmountStatus.POSITIVE,
         imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1280px-Apple_logo_black.svg.png"
     ),
     RateModel(
         title = "USD/GBP",
-        amount = 0.5171,
+        amount = "0.5171",
         amountState = AmountStatus.NEGATIVE,
         imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1280px-Apple_logo_black.svg.png"
     ),
