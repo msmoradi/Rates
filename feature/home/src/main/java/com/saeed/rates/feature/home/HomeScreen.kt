@@ -25,6 +25,8 @@ fun HomeRoute(
     HomeScreen(
         homeUiState = homeUiState,
         modifier = modifier
+            .systemBarsPadding()
+            .background(MaterialTheme.colorScheme.background)
     )
 }
 
