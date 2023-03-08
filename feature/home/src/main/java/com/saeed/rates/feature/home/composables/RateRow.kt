@@ -1,25 +1,28 @@
 package com.saeed.rates.feature.home.composables
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDownward
 import androidx.compose.material.icons.filled.ArrowUpward
-import androidx.compose.material.icons.filled.Flag
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.saeed.rates.core.designsystem.DevicePreviews
+import com.saeed.rates.core.designsystem.R
 import com.saeed.rates.core.designsystem.theme.RatesTheme
 import com.saeed.rates.core.model.AmountStatus
 import com.saeed.rates.core.model.RateModel
@@ -42,7 +45,11 @@ fun RateRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Icon(imageVector = Icons.Default.Flag, contentDescription = "Flag Icon")
+        Image(
+            modifier = Modifier.size(44.dp),
+            painter = getRateFlagPainter(rateModel.title),
+            contentDescription = "Flag Icon"
+        )
         Text(
             modifier = Modifier.weight(1f),
             text = rateModel.title,
@@ -55,6 +62,21 @@ fun RateRow(
             imageVector = getImageVectorBasedOnState(rateModel.amountState)
         )
     }
+}
+
+@Composable
+fun getRateFlagPainter(rateName: String): Painter {
+    val flagId = when (rateName) {
+        "AUDCAD" -> R.drawable.audcad
+        "EURUSD" -> R.drawable.eurusd
+        "GBPJPY" -> R.drawable.gbpjpy
+        "JPYAED" -> R.drawable.jpyaed
+        "JPYSEK" -> R.drawable.jpysek
+        "USDCAD" -> R.drawable.usdcad
+        "USDGBP" -> R.drawable.usdgbp
+        else -> R.drawable.audcad
+    }
+    return painterResource(id = flagId)
 }
 
 @Composable
