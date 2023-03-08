@@ -1,9 +1,7 @@
 package com.saeed.rates.feature.home
 
-import com.saeed.rates.core.model.RateModel
-
 sealed interface HomeUiState {
-    data class Success(val rates: List<RateModel>) : HomeUiState
+    data class Success(val homeUiModel: HomeUiModel) : HomeUiState
     object Error : HomeUiState
     object Loading : HomeUiState
 }
