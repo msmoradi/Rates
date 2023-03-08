@@ -24,7 +24,6 @@ fun HomeContent(
 ) {
     Column(modifier = modifier) {
         LazyColumn(
-            modifier = modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(16.dp),
             contentPadding = PaddingValues(
                 horizontal = 24.dp,
