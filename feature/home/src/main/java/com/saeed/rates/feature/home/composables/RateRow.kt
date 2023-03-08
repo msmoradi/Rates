@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDownward
+import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material.icons.filled.Flag
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -15,10 +17,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Green
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.saeed.rates.core.designsystem.DevicePreviews
 import com.saeed.rates.core.designsystem.theme.RatesTheme
+import com.saeed.rates.core.model.AmountStatus
 import com.saeed.rates.core.model.RateModel
 import com.saeed.rates.core.model.previewRates
 
@@ -46,11 +49,27 @@ fun RateRow(
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onBackground,
         )
-        Text(
-            text = rateModel.amount,
-            style = MaterialTheme.typography.titleMedium,
-            color = Green,
+        AmountSection(
+            amount = rateModel.amount,
+            color = getAmountColorBasedOnState(rateModel.amountState),
+            imageVector = getImageVectorBasedOnState(rateModel.amountState)
         )
+    }
+}
+
+@Composable
+fun getAmountColorBasedOnState(amountState: AmountStatus): Color {
+    return when (amountState) {
+        AmountStatus.POSITIVE -> MaterialTheme.colorScheme.tertiary
+        AmountStatus.NEGATIVE -> MaterialTheme.colorScheme.error
+    }
+}
+
+@Composable
+fun getImageVectorBasedOnState(amountState: AmountStatus): ImageVector {
+    return when (amountState) {
+        AmountStatus.POSITIVE -> Icons.Default.ArrowUpward
+        AmountStatus.NEGATIVE -> Icons.Default.ArrowDownward
     }
 }
 
