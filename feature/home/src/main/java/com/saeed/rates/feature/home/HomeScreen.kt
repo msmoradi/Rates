@@ -2,9 +2,9 @@ package com.saeed.rates.feature.home
 
 import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -14,7 +14,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.saeed.rates.core.designsystem.DevicePreviews
 import com.saeed.rates.core.designsystem.theme.RatesTheme
 import com.saeed.rates.core.model.previewRates
+import com.saeed.rates.feature.home.composables.ErrorSection
 import com.saeed.rates.feature.home.composables.HomeContent
+import com.saeed.rates.feature.home.composables.LoadingSection
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
@@ -28,6 +30,7 @@ fun HomeRoute(
     HomeScreen(
         homeUiState = homeUiState,
         modifier = modifier
+            .fillMaxSize()
             .systemBarsPadding()
             .background(MaterialTheme.colorScheme.background)
     )
@@ -39,13 +42,15 @@ internal fun HomeScreen(
     modifier: Modifier = Modifier,
     homeUiState: HomeUiState,
 ) {
-
     when (homeUiState) {
-        HomeUiState.Error -> {
-            Text(text = "error")
+        is HomeUiState.Error -> {
+            ErrorSection(
+                modifier = modifier,
+                errorMessage = homeUiState.exception.localizedMessage ?: DEFAULT_ERROR_MESSAGE
+            )
         }
         HomeUiState.Loading -> {
-            Text(text = "loading")
+            LoadingSection(modifier = modifier)
         }
         is HomeUiState.Success -> {
             HomeContent(
