@@ -21,7 +21,7 @@ class TimeRepositoryImpl @Inject constructor() : TimeRepository {
         return Calendar.getInstance().time
     }
 
-    override fun getCurrentTimeString(): String {
+    override fun getCurrentTime(): String {
         return getCurrentDateTime().toDateString()
     }
 }

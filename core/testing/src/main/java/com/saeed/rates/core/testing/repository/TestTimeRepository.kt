@@ -5,7 +5,7 @@ import com.saeed.rates.core.testing.data.timeTestData
 
 class TestTimeRepository : TimeRepository {
 
-    override fun getCurrentTimeString(): String {
+    override fun getCurrentTime(): String {
         return timeTestData
     }
 }
