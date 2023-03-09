@@ -5,8 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.saeed.rates.core.domain.GetRateListUseCase
 import com.saeed.rates.core.result.Result
 import com.saeed.rates.core.result.asResult
-import com.saeed.rates.feature.home.utils.getCurrentDateTime
-import com.saeed.rates.feature.home.utils.toDateString
+import com.saeed.rates.core.data.repository.TimeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
@@ -22,6 +21,7 @@ val DEFAULT_EXCEPTION = Throwable(DEFAULT_ERROR_MESSAGE)
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
+    timeRepository: TimeRepository,
     getRateListUseCase: GetRateListUseCase,
 ) : ViewModel() {
 
@@ -47,7 +47,7 @@ class HomeViewModel @Inject constructor(
                 is Result.Success -> HomeUiState.Success(
                     HomeUiModel(
                         rateListResult.data,
-                        lastTimeUpdate = getCurrentDateTime().toDateString()
+                        lastTimeUpdate = timeRepository.getCurrentTime()
                     )
                 )
             }
